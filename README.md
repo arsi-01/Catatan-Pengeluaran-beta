@@ -19,7 +19,7 @@ Pencatatan pengeluaran merupakan langkah penting dalam pengelolaan keuangan. Apl
 | `id`          | INTEGER (PK)   | ID unik untuk setiap pengeluaran       |
 | `pengeluaran` | TEXT           | Nama atau kategori pengeluaran         |
 | `deskripsi`   | TEXT           | Keterangan tambahan                    |
-| `harga`       | REAL           | Jumlah pengeluaran                     |
+| `harga`       | INTEGER           | Jumlah pengeluaran                     |
 
 ## Demo
 
@@ -28,7 +28,7 @@ Halaman utama menampilkan daftar pengeluaran.
 
 | Tampilan Awal | Tampilan dengan Data |
 |---------------|-----------------------|
-| <img src="https://github.com/user-attachments/assets/674f9118-447f-4866-8f65-f407c980872c" alt="Tampilan awal" width="300"/> | <img src="https://github.com/user-attachments/assets/e22095e2-6669-4584-bc33-1c8d73b5f8c8" alt="Tampilan ada data" width="300"/> |
+| <img src="https://github.com/user-attachments/assets/de360514-8d15-4150-b5ae-e46988a3d419" alt="Tampilan awal" width="300"/> | <img src="https://github.com/user-attachments/assets/71eb556d-0f58-444a-aefb-32da5d73b5d7" alt="Tampilan ada data" width="300"/> |
 
 ---
 
@@ -37,21 +37,21 @@ Formulir untuk menambah pengeluaran baru.
 
 | Tambah Catatan | Konfirmasi Tambahan |
 |----------------|----------------------|
-| <img src="https://github.com/user-attachments/assets/67d80742-d061-4edd-a200-a777014827c8" alt="Tambah catatan" width="300"/> | <img src="https://github.com/user-attachments/assets/7ac89eb8-c1eb-4549-9127-9427977a4e9f" alt="Tambah catatan 1" width="300"/> |
+| <img src="https://github.com/user-attachments/assets/77612e17-10d5-4418-b899-1a050a62284c" alt="Tambah catatan" width="300"/> | <img src="https://github.com/user-attachments/assets/9c89789d-b62c-4314-8b47-6de7bd7f63b9" alt="Tambah catatan 1" width="300"/> |
 
 ---
 
 ### 3. Formulir Edit atau Hapus Pengeluaran
 Formulir untuk mengedit pengeluaran atau menghapus.
 
-<img src="https://github.com/user-attachments/assets/dc3a77e6-2495-4655-aeac-caa786b3d1db" alt="Tampilan edit data" width="400"/>
+<img src="https://github.com/user-attachments/assets/f9987597-72a1-442f-99b8-9ddbfe275df7" alt="Tampilan edit data" width="400"/>
 
 ---
 
 ### 4. Tombol Hapus Pengeluaran
 Tombol untuk menghapus seluruh pengeluaran.
 
-<img src="https://github.com/user-attachments/assets/9d40b092-3e74-41e8-b00b-dd8f5cee25f3" alt="Tombol delete all" width="400"/>
+<img src="https://github.com/user-attachments/assets/3f8ce43c-ef52-4bba-8c27-905a7b74f45f" alt="Tombol delete all" width="400"/>
 
 
 ## Kesimpulan
