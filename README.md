@@ -1,12 +1,12 @@
 # Dokumentasi Aplikasi Pencatat Pengeluaran Sederhana
 
 ## Latar Belakang
-Pencatatan pengeluaran merupakan langkah penting dalam pengelolaan keuangan. Aplikasi ini mendukung **SDG 1: Tanpa Kemiskinan** dan **SDG 8: Pekerjaan Layak dan Pertumbuhan Ekonomi**.
+Pencatatan pengeluaran merupakan salah satu langkah penting dalam mengelola keuangan pribadi. Banyak individu dan keluarga menghadapi tantangan dalam memonitor dan mengendalikan pengeluaran mereka, yang sering kali mengarah pada pemborosan atau kekurangan dana untuk kebutuhan prioritas. Dengan menyediakan alat yang sederhana dan mudah digunakan, aplikasi ini bertujuan untuk membantu pengguna dalam mencatat, mengelola, dan memahami pengeluaran mereka. Langkah ini sejalan dengan **SDG 1: Tanpa Kemiskinan**, yang berfokus pada pengurangan kemiskinan melalui pengelolaan keuangan yang lebih baik, dan **SDG 8: Pekerjaan Layak dan Pertumbuhan Ekonomi**, yang mendorong inklusi finansial dan pertumbuhan ekonomi yang berkelanjutan.
 
 ## Tujuan
-1. Membantu mencatat pengeluaran sehari-hari.
-2. Memberikan wawasan pola pengeluaran.
-3. Mendukung pengelolaan keuangan pribadi.
+1. Membantu pengguna mencatat pengeluaran sehari-hari dengan mudah.
+2. Memberikan wawasan kepada pengguna tentang pola pengeluaran mereka.
+3. Mendukung pengelolaan keuangan pribadi yang lebih baik guna mencegah pemborosan.
 
 ## Fitur Utama
 - **Mencatat Pengeluaran**: Tambahkan nama pengeluaran, deskripsi, dan harga.
@@ -55,7 +55,7 @@ Tombol untuk menghapus seluruh pengeluaran.
 
 
 ## Kesimpulan
-Aplikasi ini dirancang untuk mempermudah pengelolaan keuangan, mendukung pencapaian SDG, dan meningkatkan kesadaran pengguna terhadap pola pengeluaran mereka.
+Aplikasi Pencatat Pengeluaran Sederhana dirancang untuk membantu pengguna mencatat dan mengelola pengeluaran mereka dengan lebih baik. Dengan fitur yang mudah digunakan dan arsitektur yang sederhana, aplikasi ini memberikan solusi praktis untuk meningkatkan kesadaran finansial pengguna. Proyek ini memberikan wawasan tentang pentingnya pengelolaan keuangan yang baik untuk mendukung keberlanjutan ekonomi individu.
 
 
 
