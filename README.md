@@ -9,15 +9,15 @@ Pencatatan pengeluaran merupakan salah satu langkah penting dalam mengelola keua
 3. Mendukung pengelolaan keuangan pribadi yang lebih baik guna mencegah pemborosan.
 
 ## Fitur Utama
-- **Mencatat Pengeluaran**: Tambahkan nama pengeluaran, deskripsi, dan harga.
-- **Riwayat Pengeluaran**: Lihat daftar pengeluaran sebelumnya.
-- **Menghapus Pengeluaran**: Hapus data yang tidak diperlukan.
+- **Mencatat Pengeluaran**: Menambahkan baris pengeluaran pada daftar pengeluaran dengan variabel pengeluaran, deskripsi, dan harga.
+- **Riwayat Pengeluaran**: Melihat daftar pengeluaran yang sudah dicatat.
+- **Menghapus Pengeluaran**: Menghapus data yang sudah tidak diperlukan.
 
 ## Arsitektur
 ### Diagram
 
 ### Teknologi:
-- Bahasa Pemrograman: Kotlin/Java (untuk Android).
+- Bahasa Pemrograman: Java (untuk Android).
 - Database: SQLite.
 - Framework: Android Jetpack.
 ### Database
@@ -49,7 +49,7 @@ Formulir untuk menambah pengeluaran baru.
 ---
 
 ### 3. Formulir Edit atau Hapus Pengeluaran
-Formulir untuk mengedit pengeluaran atau menghapus.
+Formulir untuk mengedit atau menghapus pengeluaran.
 
 <img src="https://github.com/user-attachments/assets/f9987597-72a1-442f-99b8-9ddbfe275df7" alt="Tampilan edit data" width="400"/>
 
