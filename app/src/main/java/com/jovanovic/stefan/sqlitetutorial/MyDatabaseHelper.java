@@ -3,6 +3,7 @@ package com.jovanovic.stefan.sqlitetutorial;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -12,14 +13,14 @@ import androidx.annotation.Nullable;
 class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
-    private static final String DATABASE_NAME = "BookLibrary.db";
+    private static final String DATABASE_NAME = "Catatan.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "my_library";
+    private static final String TABLE_NAME = "Pengeluaran";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_TITLE = "book_title";
-    private static final String COLUMN_AUTHOR = "book_author";
-    private static final String COLUMN_PAGES = "book_pages";
+    private static final String COLUMN_PENGELUARAN = "barang_jasa";
+    private static final String COLUMN_DESKRIPSI = "deskripsi";
+    private static final String COLUMN_HARGA = "harga";
 
     MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,10 +30,10 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
-                        " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_TITLE + " TEXT, " +
-                        COLUMN_AUTHOR + " TEXT, " +
-                        COLUMN_PAGES + " INTEGER);";
+                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_PENGELUARAN + " TEXT, " +
+                COLUMN_DESKRIPSI + " TEXT, " +
+                COLUMN_HARGA + " INTEGER);";
 
         try{
             db.execSQL(query);
@@ -41,25 +42,26 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed to create table: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try{
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         }catch(SQLException e){
-            og.e("SQLiteException", "Error Upgrading table: "+ e.getMessage());
-            Toast.makeText(context, "Failed to Upgrade table: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.e("SQLiteException", "Error upgrading table: "+ e.getMessage());
+            Toast.makeText(context, "Failed to upgrade table: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         onCreate(db);
     }
 
-    void addBook(String title, String author, int pages){
+    void addExpense(String barangJasa, String deskripsi, int harga){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_TITLE, title);
-        cv.put(COLUMN_AUTHOR, author);
-        cv.put(COLUMN_PAGES, pages);
-        long result = db.insert(TABLE_NAME,null, cv);
+        cv.put(COLUMN_PENGELUARAN, barangJasa);
+        cv.put(COLUMN_DESKRIPSI, deskripsi);
+        cv.put(COLUMN_HARGA, harga);
+        long result = db.insert(TABLE_NAME, null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         }else {
@@ -69,9 +71,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
 
     Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME;
-
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = null;
         if(db != null){
             cursor = db.rawQuery(query, null);
@@ -79,12 +79,12 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateData(String row_id, String title, String author, String pages){
+    void updateData(String row_id, String barangJasa, String deskripsi, String harga){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_TITLE, title);
-        cv.put(COLUMN_AUTHOR, author);
-        cv.put(COLUMN_PAGES, pages);
+        cv.put(COLUMN_PENGELUARAN, barangJasa);
+        cv.put(COLUMN_DESKRIPSI, deskripsi);
+        cv.put(COLUMN_HARGA, harga);
 
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
         if(result == -1){
@@ -92,7 +92,6 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }else {
             Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     void deleteOneRow(String row_id){
@@ -110,11 +109,10 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
 
         try{
             db.execSQL("DELETE FROM " + TABLE_NAME);
+            db.execSQL("DELETE FROM sqlite_sequence WHERE name = '" + TABLE_NAME + "'");
         }catch(SQLException e){
             Log.e("SQLiteException", "Error deleting table: "+ e.getMessage());
             Toast.makeText(context, "Failed to delete table: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        
     }
-
 }
