@@ -14,86 +14,95 @@ import android.widget.Toast;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    EditText title_input, author_input, pages_input;
+    EditText pengeluaran_input, deskripsi_input, harga_input;
     Button update_button, delete_button;
 
-    String id, title, author, pages;
+    String id, pengeluaran, deskripsi, harga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
-        title_input = findViewById(R.id.title_input2);
-        author_input = findViewById(R.id.author_input2);
-        pages_input = findViewById(R.id.pages_input2);
+        pengeluaran_input = findViewById(R.id.barang_jasa_input2); // Pastikan ID input sesuai dengan XML
+        deskripsi_input = findViewById(R.id.deskripsi_input2);
+        harga_input = findViewById(R.id.harga_input2);
         update_button = findViewById(R.id.update_button);
         delete_button = findViewById(R.id.delete_button);
 
-        //First we call this
+        // Ambil dan atur data dari Intent
         getAndSetIntentData();
 
-        //Set actionbar title after getAndSetIntentData method
+        // Atur judul ActionBar setelah data diambil
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
-            ab.setTitle(title);
+            ab.setTitle(pengeluaran);
         }
 
+        // Tombol Update
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //And only then we call this
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
-                title = title_input.getText().toString().trim();
-                author = author_input.getText().toString().trim();
-                pages = pages_input.getText().toString().trim();
-                myDB.updateData(id, title, author, pages);
+                pengeluaran = pengeluaran_input.getText().toString().trim();
+                deskripsi = deskripsi_input.getText().toString().trim();
+                harga = harga_input.getText().toString().trim();
+
+                // Perbarui data di database
+                myDB.updateData(id, pengeluaran, deskripsi, harga);
             }
         });
+
+        // Tombol Hapus
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 confirmDialog();
             }
         });
-
     }
 
-    void getAndSetIntentData(){
-        if(getIntent().hasExtra("id") && getIntent().hasExtra("title") &&
-                getIntent().hasExtra("author") && getIntent().hasExtra("pages")){
-            //Getting Data from Intent
-            id = getIntent().getStringExtra("id");
-            title = getIntent().getStringExtra("title");
-            author = getIntent().getStringExtra("author");
-            pages = getIntent().getStringExtra("pages");
+    // Ambil data dari Intent dan tampilkan ke EditText
+    void getAndSetIntentData() {
+        if (getIntent().hasExtra("id") && getIntent().hasExtra("pengeluaran") &&
+                getIntent().hasExtra("deskripsi") && getIntent().hasExtra("harga")) {
 
-            //Setting Intent Data
-            title_input.setText(title);
-            author_input.setText(author);
-            pages_input.setText(pages);
-            Log.d("stev", title+" "+author+" "+pages);
-        }else{
-            Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
+            // Ambil data dari Intent
+            id = getIntent().getStringExtra("id");
+            pengeluaran = getIntent().getStringExtra("pengeluaran");
+            deskripsi = getIntent().getStringExtra("deskripsi");
+            harga = getIntent().getStringExtra("harga");
+
+            // Set data ke EditText
+            pengeluaran_input.setText(pengeluaran);
+            deskripsi_input.setText(deskripsi);
+            harga_input.setText(harga);
+
+            // Log untuk debug
+            Log.d("UpdateActivity", "Data: ID=" + id + ", Pengeluaran=" + pengeluaran +
+                    ", Deskripsi=" + deskripsi + ", Harga=" + harga);
+        } else {
+            Toast.makeText(this, "Data tidak tersedia.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    void confirmDialog(){
+    // Konfirmasi sebelum menghapus data
+    void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete " + title + " ?");
-        builder.setMessage("Are you sure you want to delete " + title + " ?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle("Hapus " + pengeluaran + "?");
+        builder.setMessage("Apakah Anda yakin ingin menghapus " + pengeluaran + "?");
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 myDB.deleteOneRow(id);
-                finish();
+                finish(); // Tutup activity setelah data dihapus
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                // Tidak melakukan apa-apa
             }
         });
         builder.create().show();
