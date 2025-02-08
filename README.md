@@ -19,7 +19,7 @@ Pencatatan pengeluaran merupakan salah satu langkah penting dalam mengelola keua
 ### Teknologi:
 - Bahasa Pemrograman: Kotlin/Java (untuk Android).
 - Database: SQLite.
-- Framework: Android Jetpack (jika menggunakan Jetpack Compose atau ViewModel).
+- Framework: Android Jetpack.
 ### Database
 | Kolom         | Tipe Data       | Deskripsi                              |
 |---------------|----------------|---------------------------------------|
