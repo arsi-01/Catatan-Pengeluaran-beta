@@ -14,6 +14,13 @@ Pencatatan pengeluaran merupakan salah satu langkah penting dalam mengelola keua
 - **Menghapus Pengeluaran**: Hapus data yang tidak diperlukan.
 
 ## Arsitektur
+### Diagram
+
+### Teknologi:
+- Bahasa Pemrograman: Kotlin/Java (untuk Android).
+- Database: SQLite.
+- Framework: Android Jetpack (jika menggunakan Jetpack Compose atau ViewModel).
+### Database
 | Kolom         | Tipe Data       | Deskripsi                              |
 |---------------|----------------|---------------------------------------|
 | `id`          | INTEGER (PK)   | ID unik untuk setiap pengeluaran       |
