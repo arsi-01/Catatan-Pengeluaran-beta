@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -23,16 +22,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private Activity activity;
-    private ArrayList book_id, book_title, book_author, book_pages;
+    private ArrayList pengeluaran_id, pengeluaran_nama, pengeluaran_deskripsi, pengeluaran_harga;
 
-    CustomAdapter(Activity activity, Context context, ArrayList book_id, ArrayList book_title, ArrayList book_author,
-                  ArrayList book_pages){
+    CustomAdapter(Activity activity, Context context, ArrayList pengeluaran_id, ArrayList pengeluaran_nama, ArrayList pengeluaran_deskripsi,
+                  ArrayList pengeluaran_harga) {
         this.activity = activity;
         this.context = context;
-        this.book_id = book_id;
-        this.book_title = book_title;
-        this.book_author = book_author;
-        this.book_pages = book_pages;
+        this.pengeluaran_id = pengeluaran_id;
+        this.pengeluaran_nama = pengeluaran_nama;
+        this.pengeluaran_deskripsi = pengeluaran_deskripsi;
+        this.pengeluaran_harga = pengeluaran_harga;
     }
 
     @NonNull
@@ -45,49 +44,50 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.book_id_txt.setText(String.valueOf(book_id.get(position)));
-        holder.book_title_txt.setText(String.valueOf(book_title.get(position)));
-        holder.book_author_txt.setText(String.valueOf(book_author.get(position)));
-        holder.book_pages_txt.setText(String.valueOf(book_pages.get(position)));
-        //Recyclerview onClickListener
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+        // Set data untuk setiap item
+        holder.pengeluaran_id_txt.setText(String.valueOf(pengeluaran_id.get(position)));
+        holder.pengeluaran_nama_txt.setText(String.valueOf(pengeluaran_nama.get(position)));
+        holder.pengeluaran_deskripsi_txt.setText(String.valueOf(pengeluaran_deskripsi.get(position)));
+        holder.pengeluaran_harga_txt.setText(String.valueOf(pengeluaran_harga.get(position)));
+        // RecyclerView onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(book_id.get(position)));
-                intent.putExtra("title", String.valueOf(book_title.get(position)));
-                intent.putExtra("author", String.valueOf(book_author.get(position)));
-                intent.putExtra("pages", String.valueOf(book_pages.get(position)));
-                activity.startActivityForResult(intent, 1);
+                int currentPosition = holder.getAdapterPosition(); // Ambil posisi dinamis
+                if (currentPosition != RecyclerView.NO_POSITION) { // Pastikan posisi valid
+                    Intent intent = new Intent(context, UpdateActivity.class);
+                    intent.putExtra("id", String.valueOf(pengeluaran_id.get(currentPosition)));
+                    intent.putExtra("pengeluaran", String.valueOf(pengeluaran_nama.get(currentPosition)));
+                    intent.putExtra("deskripsi", String.valueOf(pengeluaran_deskripsi.get(currentPosition)));
+                    intent.putExtra("harga", String.valueOf(pengeluaran_harga.get(currentPosition)));
+                    activity.startActivityForResult(intent, 1);
+                }
             }
         });
-
-
     }
 
     @Override
     public int getItemCount() {
-        return book_id.size();
+        return pengeluaran_id.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView book_id_txt, book_title_txt, book_author_txt, book_pages_txt;
+        TextView pengeluaran_id_txt, pengeluaran_nama_txt, pengeluaran_deskripsi_txt, pengeluaran_harga_txt;
         LinearLayout mainLayout;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            book_id_txt = itemView.findViewById(R.id.book_id_txt);
-            book_title_txt = itemView.findViewById(R.id.book_title_txt);
-            book_author_txt = itemView.findViewById(R.id.book_author_txt);
-            book_pages_txt = itemView.findViewById(R.id.book_pages_txt);
+            pengeluaran_id_txt = itemView.findViewById(R.id.pengeluaran_id_txt);
+            pengeluaran_nama_txt = itemView.findViewById(R.id.pengeluaran_nama_txt);
+            pengeluaran_deskripsi_txt = itemView.findViewById(R.id.pengeluaran_deskripsi_txt);
+            pengeluaran_harga_txt = itemView.findViewById(R.id.pengeluaran_harga_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
-            //Animate Recyclerview
+
+            // Animate RecyclerView
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
             mainLayout.setAnimation(translate_anim);
         }
-
     }
-
 }
